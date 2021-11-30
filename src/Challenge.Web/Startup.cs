@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace backend_challenge
+namespace Challenge.Web
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace backend_challenge
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "backend_challenge", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Challenge.Web", Version = "v1" });
             });
         }
 
@@ -41,7 +41,7 @@ namespace backend_challenge
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "backend_challenge v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Challenge.Web v1"));
             }
 
             app.UseHttpsRedirection();

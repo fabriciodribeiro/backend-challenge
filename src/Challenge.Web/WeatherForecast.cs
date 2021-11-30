@@ -1,6 +1,6 @@
 using System;
 
-namespace backend_challenge
+namespace Challenge.Web
 {
     public class WeatherForecast
     {

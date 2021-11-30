@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace backend_challenge.Controllers
+namespace Challenge.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
