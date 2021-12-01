@@ -1,4 +1,5 @@
-﻿using Challenge.Infrastructure.Data;
+﻿using Challenge.Application.Interfaces;
+using Challenge.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,7 @@ namespace Challenge.Infrastructure
                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             }
 
-            services.AddScoped<ChallengeDBContext>(provider => provider.GetService<ChallengeDBContext>());
+            services.AddScoped<IChallengeDBContext>(provider => provider.GetService<ChallengeDBContext>());
 
             return services;
         }

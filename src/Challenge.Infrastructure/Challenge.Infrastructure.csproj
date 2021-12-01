@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Challenge.Application\Challenge.Application.csproj" />
     <ProjectReference Include="..\Challenge.Core\Challenge.Core.csproj" />
   </ItemGroup>
 

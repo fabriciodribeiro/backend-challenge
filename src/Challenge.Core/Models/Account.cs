@@ -11,7 +11,7 @@ namespace Challenge.Core.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
-        public IList<Portfolio> Portfolios { get; set; }
-        public IList<Trade> Trades { get; set; }
+        public IList<Portfolio> Portfolios { get; private set; } = new List<Portfolio>();
+        public IList<Trade> Trades { get; private set; } = new List<Trade>();
     }
 }
