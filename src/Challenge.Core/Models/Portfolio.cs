@@ -1,14 +1,14 @@
 ﻿    using System;
+using System.Collections.Generic;
 
 namespace Challenge.Core.Models
 {
-    public class Portfolio : BaseEntity
+    public class Portfolio : AuditableEntity
     {
-        public DateTime Date { get; private set; }
-
-        public Portfolio(string name)
-        {
-            Date = DateTime.UtcNow;
-        }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public Guid AccountId { get; set; }
+        public Account User { get; set; }
+        public IList<Trade> Trades { get; set; }
     }
 }
