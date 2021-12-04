@@ -4,7 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Challenge.Application.Accounts.Commands;
+using Challenge.Application.Accounts.Commands.Login;
+using Challenge.Application.Accounts.Commands.Signup;
+using Challenge.Application.Accounts.Query.ListUsers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -52,6 +54,25 @@ namespace Challenge.API.Controllers
                 });
             }
             return Unauthorized();
+        }
+
+        [HttpPost]
+        [Route("signup")]
+        public async Task<IActionResult> Signup([FromBody] AccountSignupCommand model)
+        {
+            var result = await Mediator.Send(model);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("list")]
+        public async Task<IActionResult> List()
+        {
+            var accountList = new ListUsersQuery();
+            var result = await Mediator.Send(accountList);
+
+            return Ok(result);
         }
     }
 }

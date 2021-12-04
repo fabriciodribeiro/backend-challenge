@@ -3,8 +3,9 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Challenge.Application.Services;
 
-namespace Challenge.Application.Accounts.Commands
+namespace Challenge.Application.Accounts.Commands.Login
 {
     public class AccountLoginCommand : IRequest<bool>
     {
@@ -24,18 +25,10 @@ namespace Challenge.Application.Accounts.Commands
 
         public async Task<bool> Handle(AccountLoginCommand request, CancellationToken cancellationToken)
         {
-            //var entity = new TodoItem
-            //{
-            //    ListId = request.ListId,
-            //    Title = request.Title,
-            //    Done = false
-            //};
+            var result = _context.Accounts
+                .Any(x => x.UserName == request.Username && x.Password == HashService.Cryptograph(request.Password, x.Salt));
 
-            //TODO: Validar se o usuario existe e neste caso validar a senha
-
-            var retorno = _context.Accounts.Any(x => x.UserName == request.Username);
-
-            return true;
-        }
+            return result;
+        }       
     }
 }

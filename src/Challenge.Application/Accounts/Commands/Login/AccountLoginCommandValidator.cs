@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Challenge.Application.Accounts.Commands
+namespace Challenge.Application.Accounts.Commands.Login
 {
     public class AccountLoginCommandValidator : AbstractValidator<AccountLoginCommand>
     {
@@ -8,7 +8,7 @@ namespace Challenge.Application.Accounts.Commands
         {
             RuleFor(v => v.Username)
                 .MaximumLength(100)
-                .NotEmpty();
+                .NotEmpty().WithMessage("Username is required.");
 
             RuleFor(v => v.Password)
                 .MaximumLength(2000)
