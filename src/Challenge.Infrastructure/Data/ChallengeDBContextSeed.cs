@@ -1,4 +1,5 @@
-﻿using Challenge.Core.Models;
+﻿using Challenge.Application.Services;
+using Challenge.Core.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace Challenge.Infrastructure.Data
             {
                 // Seed the database
                 if (!context.Accounts.Any())
-                {                    
+                {
+                    var salt = Guid.NewGuid().ToString().Replace("-", "");
+
                     var account = new Account
                     {
                         Id = Guid.NewGuid(),
@@ -23,7 +26,8 @@ namespace Challenge.Infrastructure.Data
                         UserName = "my_username",
                         Email = "my_email@email.com",
                         Created = DateTime.UtcNow,
-                        Password = "xSubEpwq3r0KGpXfoq05ylY6dDfT/HgBUrqL0JMsXy4=",
+                        Salt = salt,
+                        Password = HashService.Cryptograph("123456", salt),
                         Portfolios = 
                         {
                             new Portfolio
