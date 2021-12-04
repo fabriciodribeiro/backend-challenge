@@ -29,6 +29,7 @@ namespace Challenge.Application.Accounts.Query.ListUsers
 
         public async Task<List<AccountDTO>> Handle(ListUsersQuery request, CancellationToken cancellationToken)
         {
+            //TODO: implementar o modelo padrão de retorno de RESULT
             return await _context.Accounts
                 .AsNoTracking()
                 .OrderBy(x => x.UserName)

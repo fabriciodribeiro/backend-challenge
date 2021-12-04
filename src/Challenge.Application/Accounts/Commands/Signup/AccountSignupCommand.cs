@@ -45,6 +45,7 @@ namespace Challenge.Application.Accounts.Commands.Signup
                     Name = request.Name,
                     UserName = request.UserName,
                     Salt = salt,
+                    Email = request.Email,
                     Password = HashService.Cryptograph(request.Password, salt),
                 };
 
