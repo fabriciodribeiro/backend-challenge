@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Challenge.Application.Services;
 
-namespace Challenge.Application.Accounts.Commands
+namespace Challenge.Application.Accounts.Commands.Login
 {
     public class AccountLoginCommand : IRequest<bool>
     {

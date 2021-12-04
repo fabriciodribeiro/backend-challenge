@@ -1,7 +1,9 @@
 using System;
 using System.Text;
+using Challenge.API.Controllers.Filters;
 using Challenge.Application;
 using Challenge.Infrastructure;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +31,9 @@ namespace Challenge.Web
             services.AddInfrastructure(Configuration);            
 
             services.AddControllers();
+
+            services.AddControllersWithViews(options => options.Filters.Add<ApiExceptionFilterAttribute>())
+                    .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
             // Adding Authentication  
             services.AddAuthentication(options =>
