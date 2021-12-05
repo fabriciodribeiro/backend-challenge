@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Challenge.Application.Common
+namespace Challenge.Application.Common.ViewModel
 {
     public class MappingProfile : Profile
     {

@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Challenge.Application.Common;
-using Challenge.Core.Models;
+using Challenge.Application.Common.ViewModel;
 using System;
-using Challenge.Application.Services;
 using System.Collections.Generic;
 using Challenge.Application.Interfaces.Services;
 

@@ -26,6 +26,7 @@ namespace Challenge.Infrastructure
             services.AddScoped<IChallengeDBContext>(provider => provider.GetService<ChallengeDBContext>());
 
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 
             return services;
         }

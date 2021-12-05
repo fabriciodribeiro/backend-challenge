@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Challenge.Application.Common
+namespace Challenge.Application.Common.ViewModel
 {
     public class NotFoundException : Exception
     {

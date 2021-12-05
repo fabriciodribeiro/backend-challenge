@@ -11,7 +11,7 @@ namespace Challenge.Application.Accounts.Mapping
         {
             CreateMap<Account, AccountDTO>(MemberList.Source);
             CreateMap<AccountSignupCommand, Account>(MemberList.Source);
+            CreateMap<Account, AccountPortfolioDTO>(MemberList.Source);
         }
-
     }
 }

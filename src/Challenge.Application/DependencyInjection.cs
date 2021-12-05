@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Challenge.Application.Common.Behaviours;
+﻿using Challenge.Application.Common.ViewModel;
 using Challenge.Application.Interfaces.Services;
 using Challenge.Application.Services;
 using FluentValidation;
@@ -19,6 +18,7 @@ namespace Challenge.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPortfolioService, PortfolioService>();
 
             return services;
         }
