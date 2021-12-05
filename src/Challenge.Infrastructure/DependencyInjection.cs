@@ -1,5 +1,7 @@
 ﻿using Challenge.Application.Interfaces;
+using Challenge.Application.Interfaces.Repositories;
 using Challenge.Infrastructure.Data;
+using Challenge.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +24,8 @@ namespace Challenge.Infrastructure
             }
 
             services.AddScoped<IChallengeDBContext>(provider => provider.GetService<ChallengeDBContext>());
+
+            services.AddTransient<IAccountRepository, AccountRepository>();
 
             return services;
         }

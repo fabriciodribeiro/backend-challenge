@@ -1,5 +1,4 @@
-﻿using Challenge.Application.Interfaces;
-using MediatR;
+﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Challenge.Application.Common;
@@ -7,6 +6,7 @@ using Challenge.Core.Models;
 using System;
 using Challenge.Application.Services;
 using System.Collections.Generic;
+using Challenge.Application.Interfaces.Services;
 
 namespace Challenge.Application.Accounts.Commands.Signup
 {
@@ -20,41 +20,22 @@ namespace Challenge.Application.Accounts.Commands.Signup
 
     public class AccountSignupCommandHandler : IRequestHandler<AccountSignupCommand, (Result Result, Guid UserId)>
     {
-        private readonly IChallengeDBContext _context;
+        private readonly IAccountService _service;
 
-        public AccountSignupCommandHandler(IChallengeDBContext context)
+        public AccountSignupCommandHandler(IAccountService service)
         {
-            _context = context;
+            _service = service;
         }
-
-        //public async Task<bool> Handle(AccountLoginCommand request, CancellationToken cancellationToken)
-        //{
-        //    var result = _context.Accounts
-        //        .Any(x => x.UserName == request.Username && x.Password == HashService.Cryptograph(request.Password, x.Salt));
-
-        //    return result;
-        //}
 
         public async Task<(Result Result, Guid UserId)> Handle(AccountSignupCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var salt = Guid.NewGuid().ToString().Replace("-", "");
-                var account = new Account
-                {
-                    Name = request.Name,
-                    UserName = request.UserName,
-                    Salt = salt,
-                    Email = request.Email,
-                    Password = HashService.Cryptograph(request.Password, salt),
-                };
-
-                _context.Accounts.Add(account);
-                await _context.SaveChangesAsync(cancellationToken);
+                var response = _service.AddAccountAsync(request, cancellationToken);
 
                 var result = Result.Success();
 
-                return (result, account.Id);
+                return (result, response.Result);
             }
             catch (Exception ex)
             {

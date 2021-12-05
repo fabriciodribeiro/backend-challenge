@@ -1,5 +1,6 @@
 ﻿using Challenge.Core.Enums;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Challenge.Core.Models
 {
@@ -13,9 +14,9 @@ namespace Challenge.Core.Models
         public decimal MarketValue { get; set; }
         public Actions Action { get; set; }  //TODO: remove this comment: see PriorityLevel (saft)
         public Guid PortfolioId { get; set; }
+        [JsonIgnore]
         public Portfolio Portfolio { get; set; }
         public Guid Executor { get; set; }
-        public Account User { get; set; }
         public string Note { get; set; }
         public string Asset { get; set; }
     }

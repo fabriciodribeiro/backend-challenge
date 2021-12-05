@@ -1,12 +1,7 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Challenge.Application.Accounts.ViewModels;
-using Challenge.Application.Interfaces;
+﻿using Challenge.Application.Accounts.ViewModels;
+using Challenge.Application.Interfaces.Services;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,23 +13,16 @@ namespace Challenge.Application.Accounts.Query.ListUsers
 
     public class ListUsersQueryHandler : IRequestHandler<ListUsersQuery, List<AccountDTO>>
     {
-        private readonly IChallengeDBContext _context;
-        private readonly IMapper _mapper;
+        private readonly IAccountService _service;
 
-        public ListUsersQueryHandler(IChallengeDBContext context, IMapper mapper)
+        public ListUsersQueryHandler(IAccountService service)
         {
-            _context = context;
-            _mapper = mapper;
+            _service = service;
         }
 
         public async Task<List<AccountDTO>> Handle(ListUsersQuery request, CancellationToken cancellationToken)
         {
-            //TODO: implementar o modelo padrão de retorno de RESULT
-            return await _context.Accounts
-                .AsNoTracking()
-                .OrderBy(x => x.UserName)
-                .ProjectTo<AccountDTO>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+            return await _service.GetAccountListAsync(cancellationToken);
         }
     }
 }
