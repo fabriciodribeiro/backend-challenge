@@ -25,8 +25,13 @@ namespace Challenge.Application.Accounts.Commands.Login
 
         public async Task<bool> Handle(AccountLoginCommand request, CancellationToken cancellationToken)
         {
-            var result = _context.Accounts
-                .Any(x => x.UserName == request.Username && x.Password == HashService.Cryptograph(request.Password, x.Salt));
+            bool result = false;
+            var user = _context.Accounts.FirstOrDefault(x => x.UserName == request.Username);
+
+            if(user != null)
+            {
+                if(user.Password == HashService.Cryptograph(request.Password, user.Salt)) result = true;
+            }
 
             return result;
         }       

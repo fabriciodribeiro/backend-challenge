@@ -12,7 +12,7 @@ namespace Challenge.Core.Models
         public decimal Price { get; set; }       
         public string Currency { get; set; }
         public decimal MarketValue { get; set; }
-        public Actions Action { get; set; }
+        public string Action { get; set; }
         public Guid PortfolioId { get; set; }
         [JsonIgnore]
         public Portfolio Portfolio { get; set; }

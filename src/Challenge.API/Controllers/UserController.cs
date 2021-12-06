@@ -11,6 +11,7 @@ using Challenge.Application.Accounts.Commands.Login;
 using Challenge.Application.Accounts.Commands.Signup;
 using Challenge.Application.Accounts.Query.ListUsers;
 using Challenge.Application.Accounts.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -90,6 +91,7 @@ namespace Challenge.API.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("list")]
         [Produces(MediaTypeNames.Application.Json)]

@@ -19,6 +19,7 @@ namespace Challenge.Application
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPortfolioService, PortfolioService>();
+            services.AddScoped<ITradeService, TradeService>();
 
             return services;
         }

@@ -1,7 +1,9 @@
 ﻿using Challenge.Application.Interfaces;
 using Challenge.Core.Models;
+using Challenge.Infrastructure.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,6 +40,14 @@ namespace Challenge.Infrastructure.Data
             var result = await base.SaveChangesAsync(cancellationToken);
 
             return result;
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new TradeMap());
+            builder.ApplyConfiguration(new PortfolioMap());
+            builder.ApplyConfiguration(new AccountMap());
+            
         }
     }
 }

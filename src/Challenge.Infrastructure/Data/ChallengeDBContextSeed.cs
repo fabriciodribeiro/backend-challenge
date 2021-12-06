@@ -1,4 +1,5 @@
 ﻿using Challenge.Application.Services;
+using Challenge.Core.Enums;
 using Challenge.Core.Models;
 using Microsoft.Extensions.Logging;
 using System;
@@ -44,7 +45,7 @@ namespace Challenge.Infrastructure.Data
                                         Price = 15.48m,
                                         Currency = "USD",
                                         MarketValue = 232.20m,
-                                        Action = Core.Enums.Actions.buy,
+                                        Action = Actions.buy.ToString(),
                                         Note = null,
                                         Asset = "PT10Y"
                                     },
@@ -56,8 +57,8 @@ namespace Challenge.Infrastructure.Data
                                         Shares = 15,
                                         Price = 15.48m,
                                         Currency = "USD",
-                                        MarketValue = 232.20m,
-                                        Action = Core.Enums.Actions.buy,
+                                        MarketValue = 32.10m,
+                                        Action = Actions.buy.ToString(),
                                         Note = null,
                                         Asset = "PT20Y"
                                     }
@@ -92,23 +93,10 @@ namespace Challenge.Infrastructure.Data
                                         Shares = 15,
                                         Price = 15.48m,
                                         Currency = "USD",
-                                        MarketValue = 232.20m,
-                                        Action = Core.Enums.Actions.buy,
+                                        MarketValue = 132.20m,
+                                        Action = Actions.buy.ToString(),
                                         Note = null,
-                                        Asset = "PT10Y"
-                                    },
-                                    new Trade
-                                    {
-                                        Id = Guid.NewGuid(),
-                                        Date = DateTime.UtcNow,
-                                        Created = DateTime.UtcNow,
-                                        Shares = 15,
-                                        Price = 15.48m,
-                                        Currency = "USD",
-                                        MarketValue = 232.20m,
-                                        Action = Core.Enums.Actions.buy,
-                                        Note = null,
-                                        Asset = "PT20Y"
+                                        Asset = "CASH"
                                     }
                                 }
                             }

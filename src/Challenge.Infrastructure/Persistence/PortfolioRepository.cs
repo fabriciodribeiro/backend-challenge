@@ -69,12 +69,12 @@ namespace Challenge.Infrastructure.Persistence
         {
             var positiveList = await _context.Traders
                 .AsNoTracking()
-                .Where(t => t.PortfolioId == id && t.Asset == "cash" && t.Action == Actions.buy)
+                .Where(t => t.PortfolioId == id && t.Asset.ToLower() == "cash" && t.Action == Actions.buy.ToString())
                 .ToListAsync(cancellationToken: cancellationToken);
 
             var negativeList = await _context.Traders
                 .AsNoTracking()
-                .Where(t => t.PortfolioId == id && t.Asset != "cash")
+                .Where(t => t.PortfolioId == id && t.Asset.ToLower() != "cash")
                 .ToListAsync(cancellationToken: cancellationToken);
 
             decimal positive = positiveList.Sum(x => Convert.ToInt32(x.MarketValue));

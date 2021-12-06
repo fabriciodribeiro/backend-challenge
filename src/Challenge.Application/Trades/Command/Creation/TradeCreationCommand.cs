@@ -5,14 +5,24 @@ using Challenge.Application.Common.ViewModel;
 using System;
 using System.Collections.Generic;
 using Challenge.Application.Interfaces.Services;
+using Challenge.Core.Enums;
+using System.Text.Json.Serialization;
 
 namespace Challenge.Application.Trades.Command.Creation
 {
     public class TradeCreationCommand : IRequest<(Result Result, Guid TradeId)>
     {
-        public string Name { get; set; }
-        public Guid Portfolio { get; set; }
-
+        public DateTime Date { get; set; }
+        public int Shares { get; set; }
+        public decimal Price { get; set; }
+        public string Currency { get; set; }
+        public decimal MarketValue { get; set; }
+        public Actions Action { get; set; }
+        [JsonIgnore]
+        public Guid PortfolioId { get; set; }
+        public Guid Executor { get; set; }
+        public string Note { get; set; }
+        public string Asset { get; set; }
     }
 
     public class TradeCreationCommandHandler : IRequestHandler<TradeCreationCommand, (Result Result, Guid TradeId)>
