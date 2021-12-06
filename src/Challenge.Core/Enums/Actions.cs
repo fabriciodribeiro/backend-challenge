@@ -2,7 +2,7 @@
 {
     public enum Actions
     {
-        buy = 0,
-        sell = 1
+        buy = 1,
+        sell = 2
     }
 }

@@ -20,13 +20,14 @@ namespace Challenge.Infrastructure
             else
             {
                 services.AddDbContext<ChallengeDBContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(configuration.GetConnectionString("SQLSERVER")));
             }
 
             services.AddScoped<IChallengeDBContext>(provider => provider.GetService<ChallengeDBContext>());
 
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IPortfolioRepository, PortfolioRepository>();
+            services.AddTransient<ITradeRepository, TradeRepository>();
 
             return services;
         }

@@ -8,6 +8,7 @@ using Challenge.Application.Accounts.ViewModels;
 using Challenge.Application.Portfolis.Command.Creation;
 using Challenge.Application.Portfolis.Command.Delete;
 using Challenge.Application.Portfolis.Query;
+using Challenge.Application.Portfolis.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,11 +17,9 @@ namespace Challenge.API.Controllers
 {
     public class PorfolioController : ApiControllerBase
     {
-        private readonly IConfiguration _configuration;
-
+        
         public PorfolioController(IConfiguration configuration)
         {
-            _configuration = configuration;            
         }
 
         //[Authorize]
@@ -52,7 +51,7 @@ namespace Challenge.API.Controllers
         //[Authorize]
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(typeof(AccountDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PortfolioDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

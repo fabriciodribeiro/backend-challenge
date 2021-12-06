@@ -36,7 +36,7 @@ namespace Challenge.Application.Services
         public async Task<Guid> AddTradeAsync(TradeCreationCommand tradeCommand, CancellationToken cancellationToken)
         {
             Trade trade = _mapper.Map<Trade>(tradeCommand);
-            trade.PortfolioId = tradeCommand.Portfolio;
+            trade.PortfolioId = tradeCommand.PortfolioId;
 
             return await _repository.AddTradeAsync(trade, cancellationToken);
         }
