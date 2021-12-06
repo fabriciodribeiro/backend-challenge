@@ -1,10 +1,10 @@
-﻿using Challenge.Application.Common;
-using Challenge.Application.Common.Exceptions;
+﻿using Challenge.Application.Common.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Challenge.API.Controllers.Filters
 {
@@ -18,7 +18,7 @@ namespace Challenge.API.Controllers.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
-                { typeof(ValidationException), HandleValidationException },
+                { typeof(Challenge.Application.Common.ViewModel.ValidationException), HandleValidationException },
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
                 { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
@@ -52,7 +52,7 @@ namespace Challenge.API.Controllers.Filters
 
         private void HandleValidationException(ExceptionContext context)
         {
-            var exception = context.Exception as ValidationException;
+            var exception = context.Exception as Application.Common.ViewModel.ValidationException;
 
             var details = new ValidationProblemDetails(exception.Errors)
             {

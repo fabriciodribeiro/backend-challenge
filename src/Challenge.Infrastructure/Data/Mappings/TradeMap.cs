@@ -33,10 +33,6 @@ namespace Challenge.Infrastructure.Data.Mappings
             builder.HasOne(x => x.Portfolio)
                 .WithMany(x => x.Trades)
                 .HasConstraintName("FK_Trade_Portfolio");
-
-            builder.HasOne(x => x.User)
-                .WithMany(x => x.Trades)
-                .HasConstraintName("FK_Trade_Account");
         }
     }
 }

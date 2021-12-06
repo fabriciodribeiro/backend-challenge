@@ -4,9 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using ValidationException = Challenge.Application.Common.Exceptions.ValidationException;
+using ValidationException = Challenge.Application.Common.ViewModel.ValidationException;
 
-namespace Challenge.Application.Common.Behaviours
+namespace Challenge.Application.Common.ViewModel
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

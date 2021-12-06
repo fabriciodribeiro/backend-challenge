@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Challenge.Application.Common
+namespace Challenge.Application.Common.ViewModel
 {
     public class Result
     {
