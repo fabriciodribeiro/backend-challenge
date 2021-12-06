@@ -8,7 +8,7 @@ using Challenge.Application.Interfaces.Services;
 
 namespace Challenge.Application.Portfolis.Command.Creation
 {
-    public class PortfolioCreationCommand : IRequest<(Result Result, Guid UserId)>
+    public class PortfolioCreationCommand : IRequest<(Result Result, Guid PortfolioId)>
     {
         public string Name { get; set; }
         public Guid Account { get; set; }

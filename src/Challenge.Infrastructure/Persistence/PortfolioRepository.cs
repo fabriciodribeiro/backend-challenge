@@ -1,5 +1,6 @@
 ﻿using Challenge.Application.Interfaces;
 using Challenge.Application.Interfaces.Repositories;
+using Challenge.Core.Enums;
 using Challenge.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -62,6 +63,24 @@ namespace Challenge.Infrastructure.Persistence
             }
 
             return existsPortfolio;
+        }
+
+        public async Task<decimal> GetPortifolioBalanceAsync(Guid id, CancellationToken cancellationToken)
+        {
+            var positiveList = await _context.Traders
+                .AsNoTracking()
+                .Where(t => t.PortfolioId == id && t.Asset == "cash" && t.Action == Actions.buy)
+                .ToListAsync(cancellationToken: cancellationToken);
+
+            var negativeList = await _context.Traders
+                .AsNoTracking()
+                .Where(t => t.PortfolioId == id && t.Asset != "cash")
+                .ToListAsync(cancellationToken: cancellationToken);
+
+            decimal positive = positiveList.Sum(x => Convert.ToInt32(x.MarketValue));
+            decimal negative = negativeList.Sum(x => Convert.ToInt32(x.MarketValue)) * -1;
+
+            return positive + negative;
         }
     }
 }

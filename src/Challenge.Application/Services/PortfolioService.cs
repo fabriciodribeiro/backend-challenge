@@ -9,6 +9,7 @@ using System;
 using Challenge.Application.Portfolis.ViewModels;
 using Challenge.Application.Portfolis.Command.Creation;
 using Challenge.Application.Portfolis.Command.Delete;
+using Challenge.Application.Portfolis.Query;
 
 namespace Challenge.Application.Services
 {
@@ -44,5 +45,15 @@ namespace Challenge.Application.Services
         {
             return await _repository.DeletePortfolioAsync(portfolioCommand.PortfolioId, cancellationToken);
         }
+
+        public async Task<decimal> GetPortfolioBalanceAsync(ListPortfolioBalanceQuery request, CancellationToken cancellationToken)
+        {
+            decimal balance = await _repository
+                .GetPortifolioBalanceAsync(request.PortfolioId, cancellationToken)
+                .ConfigureAwait(false);
+
+            return balance;
+        }
+
     }
 }

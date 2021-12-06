@@ -41,9 +41,9 @@ namespace Challenge.API.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, result.Result.Errors.First());
             }
-            if (result.UserId != Guid.Empty)
+            if (result.PortfolioId != Guid.Empty)
             {
-                return Ok(new{Userid = result.UserId.ToString()});
+                return Ok(new{PortfolioId = result.PortfolioId.ToString()});
             }
 
             return BadRequest();
@@ -77,6 +77,29 @@ namespace Challenge.API.Controllers
             await Mediator.Send(deleteCommand).ConfigureAwait(false);
 
             return NoContent();
+        }
+
+        [HttpGet("{Id:Guid}/balance")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(typeof(AccountDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Balance([FromRoute, Required] Guid Id)
+        {
+            var portfolioList = new ListPortfolioBalanceQuery(Id);
+            var result = await Mediator.Send(portfolioList);
+
+            if (!result.Result.Succeeded)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, result.Result.Errors.First());
+            }
+            if (result.Balance != null)
+            {
+                return Ok(new { Balance = result.Balance });
+            }
+
+            return BadRequest();            
         }
     }
 }

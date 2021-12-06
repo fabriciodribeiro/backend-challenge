@@ -11,5 +11,6 @@ namespace Challenge.Application.Interfaces.Repositories
         Task<Guid> AddPortfolioAsync(Portfolio portfolio, CancellationToken cancellationToken);
         Task<List<Portfolio>> GetAllPortfoliosAsync(CancellationToken cancellationToken);
         Task<bool> DeletePortfolioAsync(Guid id, CancellationToken cancellationToken);
+        Task<decimal> GetPortifolioBalanceAsync(Guid id, CancellationToken cancellationToken);
     }
 }
