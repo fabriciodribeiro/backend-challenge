@@ -69,7 +69,7 @@ namespace Challenge.Infrastructure.Persistence
         {
             var positiveList = await _context.Traders
                 .AsNoTracking()
-                .Where(t => t.PortfolioId == id && t.Asset.ToLower() == "cash" && t.Action == Actions.buy)
+                .Where(t => t.PortfolioId == id && t.Asset.ToLower() == "cash" && t.Action == Actions.buy.ToString())
                 .ToListAsync(cancellationToken: cancellationToken);
 
             var negativeList = await _context.Traders

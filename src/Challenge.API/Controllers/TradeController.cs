@@ -8,6 +8,7 @@ using Challenge.Application.Portfolis.Query;
 using Challenge.Application.Trades.Command.Creation;
 using Challenge.Application.Trades.Command.Delete;
 using Challenge.Application.Trades.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,7 @@ namespace Challenge.API.Controllers
         {
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("{portfolioId:Guid}")]
         [Consumes(MediaTypeNames.Application.Json)]
         [Produces(MediaTypeNames.Application.Json)]
@@ -46,7 +47,7 @@ namespace Challenge.API.Controllers
             return BadRequest();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(TradeDTO), StatusCodes.Status200OK)]
@@ -61,7 +62,7 @@ namespace Challenge.API.Controllers
             return Ok(result);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete("{Id:Guid}")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

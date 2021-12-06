@@ -45,7 +45,7 @@ namespace Challenge.Infrastructure.Data
                                         Price = 15.48m,
                                         Currency = "USD",
                                         MarketValue = 232.20m,
-                                        Action = Actions.buy,
+                                        Action = Actions.buy.ToString(),
                                         Note = null,
                                         Asset = "PT10Y"
                                     },
@@ -58,7 +58,7 @@ namespace Challenge.Infrastructure.Data
                                         Price = 15.48m,
                                         Currency = "USD",
                                         MarketValue = 32.10m,
-                                        Action = Actions.sell,
+                                        Action = Actions.buy.ToString(),
                                         Note = null,
                                         Asset = "PT20Y"
                                     }
@@ -94,7 +94,7 @@ namespace Challenge.Infrastructure.Data
                                         Price = 15.48m,
                                         Currency = "USD",
                                         MarketValue = 132.20m,
-                                        Action = Actions.buy,
+                                        Action = Actions.buy.ToString(),
                                         Note = null,
                                         Asset = "CASH"
                                     }
